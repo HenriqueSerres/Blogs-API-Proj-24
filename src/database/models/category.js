@@ -10,12 +10,9 @@ const Category = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },	
-	},);
-
-	Category.associate = (models) => {
-		Category.belongsToMany(models.PostCategory, { as: 'category', foreignKey: 'categoryId' });
-	};
-
+	}, {
+		timestamps: false,
+	});
 	return Category;
 };
 
