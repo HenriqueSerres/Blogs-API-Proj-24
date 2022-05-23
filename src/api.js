@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('./database/routes');
+const router = require('./routes');
 const middlewares = require('./database/middlewares/errorMiddleware');
 
 const app = express();
