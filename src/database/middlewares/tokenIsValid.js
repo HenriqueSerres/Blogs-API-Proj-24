@@ -8,8 +8,8 @@ const tokenIsValid = async (req, res, next) => {
     const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(401).json({ message: 'Token is required' });
-    }
+      return res.status(401).json({ message: 'Token not found' });
+    }    
 
     const decoded = jwt.verify(token, senhasecreta);
 
@@ -18,7 +18,10 @@ const tokenIsValid = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json(error.message);
+    if (error.message === 'jwt malformed') {
+      return res.status(401).json({ message: 'Expired or invalid token' });
+    }
+    next(error);
   }
 };
 
