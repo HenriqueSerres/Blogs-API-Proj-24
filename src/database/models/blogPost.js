@@ -21,11 +21,13 @@ const BlogPost = (sequelize, DataTypes) => {
     },
     published: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      defaultValue: new Date()
     },
     updated: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      defaultValue: new Date()
     }
 	}, {
 		timestamps: false,
