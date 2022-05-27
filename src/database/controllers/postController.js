@@ -48,9 +48,22 @@ const postUpDate = async (req, res, next) => {
   }
 };
 
+const deletePost = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { email } = req.user.data;
+    await postService.deletePost({ id, email });
+    return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 module.exports = {
   addPost,
   getAllPosts,
   getPostById,
   postUpDate,
+  deletePost,
 };
